@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+//controlador
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CursoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,20 +22,21 @@ Route::get('/', function () {
 });
 
 // Ruta de tipo get
-Route::get('cursos', function () {
-    return 'Bienvenido a la página de cursos';
-});
+Route::get('cursos', 
+    [CursoController::class, 'index']
+);
 
 //enrutamiento a una vista
-Route::get('cursos/create', function () {
-    return 'En esta página podrás crear un curso';
-});
+Route::get('cursos/create', 
+    [CursoController::class, 'create']
+);
 
 //ruta capturar parametros get
-Route::get('cursos/{curso}', function ($curso) {
-    return 'Bienvenido al curso: ' . $curso;
-});
+Route::get('cursos/{curso}', 
+    [CursoController::class, 'show']
+);
 
+//ruta capturar parametros get
 Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
     if ($categoria) {
         return "Bienvenido al curso: $curso, de la categoria: $categoria";
@@ -39,3 +44,8 @@ Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
         return "Bienvenido al curso: $curso";
     }
 });
+
+//controladores
+Route::get('controller', 
+    HomeController::class
+);
