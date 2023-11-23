@@ -21,31 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Ruta de tipo get
-Route::get('cursos', 
-    [CursoController::class, 'index']
-);
-
-//enrutamiento a una vista
-Route::get('cursos/create', 
-    [CursoController::class, 'create']
-);
-
-//ruta capturar parametros get
-Route::get('cursos/{curso}', 
-    [CursoController::class, 'show']
-);
-
-//ruta capturar parametros get
-Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
-    if ($categoria) {
-        return "Bienvenido al curso: $curso, de la categoria: $categoria";
-    } else {
-        return "Bienvenido al curso: $curso";
-    }
-});
-
 //controladores
-Route::get('controller', 
+Route::get(
+    'controller',
     HomeController::class
 );
+
+//grupos de rutas
+Route::controller(CursoController::class)->group(function () {
+    Route::get('cursos', 'index');
+    Route::get('cursos/create', 'create');
+    Route::get('cursos/{curso}', 'show');
+});
