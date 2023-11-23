@@ -9,6 +9,6 @@ class HomeController extends Controller
     //invoker una sola ruta para un controlador
     public function __invoke()
     {
-        return 'Bienvenido a la página main';
+        return view('home');
     }
 }
