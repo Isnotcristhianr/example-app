@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\cursos;
-
+use Database\Factories\CursoFactory;
 
 class CursoSeeder extends Seeder
 {
@@ -16,28 +16,6 @@ class CursoSeeder extends Seeder
     public function run(): void
     {
         //
-        $curso = new cursos();
-
-        $curso->name = 'Laravel';
-        $curso->descripcion = 'El mejor framework de PHP';
-        $curso->categoria = 'Desarrollo web';
-
-        $curso->save();
-
-        $curso2 = new cursos();
-
-        $curso2->name = 'Laravel';
-        $curso2->descripcion = 'El mejor framework de PHP';
-        $curso2->categoria = 'Desarrollo web';
-
-        $curso2->save();
-
-        $curso3 = new cursos();
-
-        $curso3->name = 'Laravel';
-        $curso3->descripcion = 'El mejor framework de PHP';
-        $curso3->categoria = 'Desarrollo web';
-
-        $curso3->save();
+       CursoFactory::new()->count(50)->create();
     }
 }
